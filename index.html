@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#3b82f6">
+  <meta name="description" content="シンプルなタイムボックス計測アプリ">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="タイムボックス">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+  <title>タイムボックス</title>
+</head>
+<body>
+  <div id="app">
+    <header>
+      <h1>タイムボックス</h1>
+      <button id="clearButton" class="clear-button">全クリア</button>
+    </header>
+    
+    <div class="search-container">
+      <input type="text" id="searchInput" placeholder="検索窓" class="search-input">
+    </div>
+    
+    <div id="timerDisplay" class="timer-display hidden">
+      <div id="currentTime" class="current-time"></div>
+      <input type="text" id="currentDetail" placeholder="現在計測中の詳細を入力" class="detail-input">
+    </div>
+    
+    <div class="list-container">
+      <ul id="timeboxList" class="timebox-list">
+        <li class="empty-message">ラップボタンを押して記録を開始しましょう</li>
+      </ul>
+    </div>
+    
+    <button id="lapButton" class="lap-button">スタート</button>
+  </div>
+  
+  <div id="splash" class="splash-screen">
+    <div class="splash-logo">タイムボックス</div>
+    <div class="splash-spinner"></div>
+  </div>
+
+  <script src="app.js"></script>
+  <script>
+    // Service Workerの登録
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('service-worker.js').then(registration => {
+          console.log('ServiceWorker登録成功:', registration.scope);
+        }).catch(error => {
+          console.log('ServiceWorker登録失敗:', error);
+        });
+      });
+    }
+    
+    // スプラッシュスクリーンを表示
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        const splash = document.getElementById('splash');
+        splash.style.opacity = '0';
+        setTimeout(() => {
+          splash.style.display = 'none';
+        }, 500);
+      }, 1000);
+    });
+  </script>
+</body>
+</html>
