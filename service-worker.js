@@ -1,4 +1,4 @@
-const CACHE_NAME = 'timebox-app-v1';
+const CACHE_NAME = 'timebox-app-v2'; // バージョン更新
 const urlsToCache = [
   '/',
   '/index.html',
