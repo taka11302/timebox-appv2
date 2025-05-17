@@ -1,3 +1,5 @@
+/* 修正版スタイルシート - 文字サイズとボタンサイズを大きくする */
+
 :root {
   --primary-color: #3b82f6;
   --bg-color: #f9fafb;
@@ -24,6 +26,8 @@ body {
   position: fixed;
   width: 100%;
   height: 100%;
+  /* 基本フォントサイズを16pxから18pxに増加 */
+  font-size: 18px;
 }
 
 #app {
@@ -46,33 +50,37 @@ header {
 }
 
 h1 {
-  font-size: 1.25rem;
+  /* タイトルサイズを拡大 */
+  font-size: 1.5rem;
   margin: 0;
 }
 
 .clear-button {
-  font-size: 0.75rem;
+  /* クリアボタンを拡大 */
+  font-size: 0.9rem;
   color: #ef4444;
   background: none;
   border: none;
-  padding: 5px;
+  padding: 8px;
   cursor: pointer;
 }
 
 .search-container {
-  margin-bottom: 16px;
+  margin-bottom: 20px; /* 少し間隔を広げる */
 }
 
 .search-input {
   width: 100%;
-  padding: 8px;
+  /* 検索入力欄を大きく */
+  padding: 12px;
   border: 1px solid var(--border-color);
-  border-radius: 4px;
+  border-radius: 8px;
+  font-size: 1.1rem;
 }
 
 .timer-display {
   text-align: center;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
 }
 
 .timer-display.hidden {
@@ -80,25 +88,28 @@ h1 {
 }
 
 .current-time {
-  font-size: 1.5rem;
+  /* タイマー表示を大きく */
+  font-size: 2rem;
   font-weight: bold;
-  margin-bottom: 4px;
+  margin-bottom: 10px;
 }
 
 .detail-input {
   width: 100%;
-  padding: 8px;
+  /* 詳細入力欄を大きく */
+  padding: 12px;
   border: 1px solid var(--border-color);
-  border-radius: 4px;
-  margin-bottom: 8px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  font-size: 1.1rem;
 }
 
 .list-container {
   flex: 1;
   overflow: auto;
   border: 1px solid var(--border-color);
-  border-radius: 4px;
-  margin-bottom: 16px;
+  border-radius: 8px;
+  margin-bottom: 20px; /* ラップボタンとの間隔を広げる */
   background: var(--card-bg);
 }
 
@@ -109,15 +120,17 @@ h1 {
 }
 
 .timebox-item {
-  padding: 12px;
+  /* アイテム間の余白を拡大 */
+  padding: 16px;
   border-bottom: 1px solid var(--border-color);
 }
 
 .timebox-header {
   display: flex;
-  font-size: 0.875rem;
+  /* ヘッダーテキストを拡大 */
+  font-size: 1rem;
   color: var(--text-secondary);
-  margin-bottom: 4px;
+  margin-bottom: 8px;
 }
 
 .timebox-date {
@@ -125,7 +138,7 @@ h1 {
 }
 
 .time-arrow {
-  margin: 0 4px;
+  margin: 0 6px;
 }
 
 .timebox-duration {
@@ -136,32 +149,46 @@ h1 {
 
 .timebox-detail-input {
   width: 100%;
-  padding: 4px;
+  /* 詳細入力欄を大きく */
+  padding: 10px;
   border: 1px solid var(--border-color);
-  border-radius: 4px;
-  font-size: 0.875rem;
+  border-radius: 6px;
+  font-size: 1rem;
 }
 
 .empty-message {
   text-align: center;
   color: var(--text-secondary);
-  padding: 16px;
+  padding: 24px;
+  /* 空メッセージを大きく */
+  font-size: 1.1rem;
 }
 
 .lap-button {
   background-color: var(--primary-color);
   color: white;
   border: none;
+  /* ラップボタンを大きく */
   border-radius: 9999px;
-  padding: 12px 24px;
-  font-size: 1.125rem;
+  padding: 16px 0; /* 高さを大きく */
+  font-size: 1.25rem;
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.2s;
+  /* ボタンを画面幅いっぱいに */
+  width: 100%;
+  /* ボタンの影を追加 */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .lap-button:hover {
   background-color: #2563eb;
+}
+
+.lap-button:active {
+  /* タップ時の効果 */
+  transform: translateY(2px);
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
 }
 
 .splash-screen {
@@ -180,16 +207,16 @@ h1 {
 }
 
 .splash-logo {
-  font-size: 2rem;
+  font-size: 2.5rem; /* スプラッシュロゴも大きく */
   color: white;
   font-weight: bold;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .splash-spinner {
-  width: 40px;
-  height: 40px;
-  border: 4px solid rgba(255, 255, 255, 0.3);
+  width: 50px;
+  height: 50px;
+  border: 5px solid rgba(255, 255, 255, 0.3);
   border-radius: 50%;
   border-top-color: white;
   animation: spin 1s ease-in-out infinite;
@@ -198,5 +225,24 @@ h1 {
 @keyframes spin {
   to {
     transform: rotate(360deg);
+  }
+}
+
+/* タップ領域を広げるための調整 */
+input, button {
+  touch-action: manipulation;
+}
+
+/* モバイル向け最適化 */
+@media (max-width: 480px) {
+  #app {
+    padding: 12px;
+  }
+  
+  .lap-button {
+    /* モバイルではさらに大きく */
+    padding: 20px 0;
+    font-size: 1.4rem;
+    margin-bottom: 8px; /* 下部に余裕を持たせる */
   }
 }
